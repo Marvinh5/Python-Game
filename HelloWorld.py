@@ -31,12 +31,24 @@ while 1:
     for events in pygame.event.get():
         if events.type == pygame.QUIT:
             sys.exit()
+        if events.type == pygame.KEYDOWN:
+            if events.key == pygame.K_RIGHT:
+                x += 5 if x >= 0 else 0
+            if events.key == pygame.K_LEFT:
+                x -= 5 if x >= 0 else 0
+
+            if events.key == pygame.K_UP:
+                y -= 5 if y >= 0 else 0
+            if events.key == pygame.K_DOWN:
+                y += 5 if y >= 0 else 0
+
+
 
     screen.fill((0, 0, 0))
 
-    mousePosition = pygame.mouse.get_pos()
+    #mousePosition = pygame.mouse.get_pos()
 
-    x, y = mousePosition
+   # x, y = mousePosition
 
     print(x, y)
 
