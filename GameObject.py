@@ -9,12 +9,16 @@ class GameObject(object):
         self.width = width
 
     def __x_collides(self, game_object):
-        if (game_object.width + game_object.x) >= self.x <= (self.width + self.x) >= game_object.x:
+        if (self.x + self.width) >= game_object.x and self.x + self.width <= (game_object.x + game_object.width):
+            return True
+        if game_object.x <= self.x <= game_object.x + game_object.width:
             return True
         return False
 
     def __y_collides(self, game_object):
         if (game_object.height + game_object.y) >= self.y <= (self.height + self.y) >= game_object.y:
+            return True
+        if game_object.y <= self.y <= game_object.y + game_object.height:
             return True
         return False
 
