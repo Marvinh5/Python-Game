@@ -22,7 +22,7 @@ class GameObject(object):
             return True
         return False
 
-    def it_collides(self, game_object):
+    def collides_with(self, game_object):
         if self.__y_collides(game_object) and self.__x_collides(game_object):
             return True
         return False
