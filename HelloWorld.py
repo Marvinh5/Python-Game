@@ -11,19 +11,19 @@ screen = pygame.display.set_mode(windowSize)
 
 myriadProFont = pygame.font.SysFont("Myriad Pro", 48)
 
-helloWorld = pygame.image.load("trujillo.jpg")
+helloWorld = pygame.image.load("Resources/trujillo.jpg")
 #myriadProFont.render("Hello World", 1, (255, 0, 255), (255, 255, 255))
 
 pygame.mouse.set_visible(0)
 
 helloWorldSize = helloWorld.get_size()
 
-sound = pygame.mixer.Sound("shooting.wav")
+sound = pygame.mixer.Sound("Resources/shooting.wav")
 
 x, y = 0, 0
 directionX, directionY = 1, 1
 clock = pygame.time.Clock()
-
+sound.play()
 while 1:
 
     clock.tick(40)
