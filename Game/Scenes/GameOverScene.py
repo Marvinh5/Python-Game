@@ -1,0 +1,8 @@
+__author__ = 'marvin'
+from Game.Scenes.Scene import Scene
+
+
+class PlayingGameScene(Scene):
+
+    def __init__(self, game):
+        super(PlayingGameScene, self).__init__(game)
