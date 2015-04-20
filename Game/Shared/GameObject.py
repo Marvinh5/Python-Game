@@ -2,11 +2,23 @@ __author__ = 'marvin'
 
 
 class GameObject(object):
-    def __init__(self, x, y, height, width):
-        self.x = x
-        self.y = y
-        self.height = height
-        self.width = width
+    def __init__(self, position, size, sprite):
+        self.__position = position
+        self.__size = size
+        self.__size = size
+        self.__sprite = sprite
+
+    def set_position(self, position):
+        self.__position = position
+
+    def get_position(self):
+        return self.__position
+
+    def get_size(self):
+        return self.__size
+
+    def get_sprite(self):
+        return self.__sprite
 
     def __x_collides(self, game_object):
         if (self.x + self.width) >= game_object.x and self.x + self.width <= (game_object.x + game_object.width):
@@ -22,7 +34,7 @@ class GameObject(object):
             return True
         return False
 
-    def collides_with(self, game_object):
+    def intersects(self, game_object):
         if self.__y_collides(game_object) and self.__x_collides(game_object):
             return True
         return False
