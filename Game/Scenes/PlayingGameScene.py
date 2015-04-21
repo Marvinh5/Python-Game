@@ -22,6 +22,11 @@ class PlayingGameScene(Scene):
         game = self.get_game()
 
         for ball in game.get_balls():
+            for current_brick in game.get_level().get_bricks():
+                if current_brick.intersects(ball):
+                    print "intersects"
             ball.update_position()
-
             game.screen.blit(ball.get_sprite(), ball.get_position())
+
+        for brick in game.get_level().get_bricks():
+            game.screen.blit(brick .get_sprite(), brick.get_position())

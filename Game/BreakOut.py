@@ -9,7 +9,7 @@ class BreakOut:
         self.__lives = 5
         self.__score = 0
         self.__level = Level(self)
-        self.__level.load()
+        self.__level.load(0)
         self.__pad = Pad({0, 0}, 0)
         self.__balls = [
             Ball({0, 0},
