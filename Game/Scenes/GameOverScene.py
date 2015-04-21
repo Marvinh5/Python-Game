@@ -2,7 +2,7 @@ __author__ = 'marvin'
 from Game.Scenes.Scene import Scene
 
 
-class PlayingGameScene(Scene):
+class GameOverScene(Scene):
 
     def __init__(self, game):
-        super(PlayingGameScene, self).__init__(game)
+        super(GameOverScene, self).__init__(game)
