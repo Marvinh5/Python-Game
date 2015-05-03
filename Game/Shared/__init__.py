@@ -1,4 +1,4 @@
 __author__ = 'marvin'
 
-import GameConstants
+from Game.Shared.GameConstants import GameConstants
 import GameObject

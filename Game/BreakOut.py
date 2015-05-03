@@ -13,7 +13,9 @@ class BreakOut:
         self.__pad = Pad({0, 0}, 0)
         self.__balls = [
             Ball({0, 0},
-                 pygame.image.load(GameConstants.GameConstants.SPRITE_BALL), self)]
+                 pygame.image.load(GameConstants.SPRITE_BALL), self)]
+
+        self.__balls[0].set_motion(True)
 
         pygame.init()
 
@@ -23,7 +25,7 @@ class BreakOut:
 
         self.__clock = pygame.time.Clock()
 
-        self.screen = pygame.display.set_mode(GameConstants.GameConstants.SCREEN_SIZE, pygame.DOUBLEBUF, 32)
+        self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE.get_size(), pygame.DOUBLEBUF, 32)
 
         pygame.mouse.set_visible(0)
 

@@ -16,17 +16,24 @@ class PlayingGameScene(Scene):
             if event.type == pygame.QUIT:
                 exit()
 
+    def manage_ball_collision(self, game):
+        elements_intersected = []
+        for ball in game.get_balls():
+            for current_brick in game.get_level().get_bricks():
+                if current_brick.intersects(ball):
+                    elements_intersected.append(current_brick)
+            if len(elements_intersected) > 0:
+                ball.change_direction(elements_intersected)
+                elements_intersected = []
+            ball.update_position()
+            game.screen.blit(ball.get_sprite(), ball.get_position())
+
     def render(self):
         super(PlayingGameScene, self).render()
 
         game = self.get_game()
 
-        for ball in game.get_balls():
-            for current_brick in game.get_level().get_bricks():
-                if current_brick.intersects(ball):
-                    print "intersects"
-            ball.update_position()
-            game.screen.blit(ball.get_sprite(), ball.get_position())
+        self.manage_ball_collision(game)
 
         for brick in game.get_level().get_bricks():
-            game.screen.blit(brick .get_sprite(), brick.get_position())
+            game.screen.blit(brick.get_sprite(), brick.get_position())

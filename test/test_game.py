@@ -1,6 +1,6 @@
 import unittest
 
-from Game.Shared import GameObject
+from Game.Shared.GameObject import GameObject
 
 
 class TestGame(unittest.TestCase):
