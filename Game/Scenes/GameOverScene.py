@@ -1,5 +1,5 @@
 __author__ = 'marvin'
-from Game.Scenes.Scene import Scene
+from Scene import Scene
 
 
 class GameOverScene(Scene):

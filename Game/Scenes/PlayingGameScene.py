@@ -1,4 +1,4 @@
-from Game.Scenes import Scene
+from Scene import Scene
 
 __author__ = 'marvin'
 
@@ -24,8 +24,12 @@ class PlayingGameScene(Scene):
                     elements_intersected.append(current_brick)
             if len(elements_intersected) > 0:
                 ball.change_direction(elements_intersected)
+                for brick in elements_intersected:
+                    game.get_level().brick_hit(brick)
                 elements_intersected = []
+            
             ball.update_position()
+            
             game.screen.blit(ball.get_sprite(), ball.get_position())
 
     def render(self):
@@ -36,4 +40,5 @@ class PlayingGameScene(Scene):
         self.manage_ball_collision(game)
 
         for brick in game.get_level().get_bricks():
-            game.screen.blit(brick.get_sprite(), brick.get_position())
+            if not brick.is_destroyed():
+                game.screen.blit(brick.get_sprite(), brick.get_position())

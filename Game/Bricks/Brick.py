@@ -1,6 +1,6 @@
 __author__ = 'marvin'
-from Game.Shared.GameObject import GameObject
-from Game.Shared.GameConstants import GameConstants
+from Shared.GameObject import GameObject
+from Shared.GameConstants import GameConstants
 
 
 class Brick(GameObject):
@@ -21,7 +21,7 @@ class Brick(GameObject):
         return self.__hit_points
 
     def hit(self):
-        self.__lives += 1
+        self.__lives -= 1
 
     def get_hit_sound(self):
         pass

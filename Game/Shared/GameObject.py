@@ -27,7 +27,36 @@ class GameObject(object):
             dimensions.append({'x': self.get_position()[0]+self.__size.get_width(), 'y': x + self.get_position()[0]})
 
         return dimensions
-
+    
+    def get_borders(self):
+        x = self.get_position()[0]
+        y = self.get_position()[1]
+        top_left     =(x, y)
+        top_right    = x + self.get_size().get_width(), y
+        bottom_left  = x, y + self.get_size().get_height()
+        bottom_right = x + self.get_size().get_width(), y + self.get_size().get_height()
+        return top_left, top_right, bottom_left, bottom_right
+    
+    def collides_edges(self, game_object):
+        borders = self.get_borders()
+        borders2 = game_object.get_borders()
+        x1 = int(borders[1][0])
+        y1 = int(borders[1][1])
+        x2 = int(borders2[2][0])
+        y2 = int(borders2[2][1])
+        allowed_distance = 16
+        if abs(x1 - x2) <= allowed_distance >= abs(y1 - y2):
+            return True
+        if abs(borders2[3][0]-borders[0][0])   <= allowed_distance >= abs(borders2[3][0]-borders[0][1]):
+            return True
+        if abs(borders2[1][0] - borders[2][0]) <= allowed_distance >= abs(borders2[1][1]-borders[2][1]):
+            return True
+        if abs(borders[3][0]-borders2[0][0])   <= allowed_distance >= abs(borders[3][0]-borders2[0][1]):
+            return True
+        
+        
+        return False
+    
     def x_collides(self, game_object):
         x1 = self.__position[0]
         x2 = game_object.get_position()[0]
@@ -80,56 +109,39 @@ class GameObject(object):
             dimensions.add('{x},{y}'.format(x=x + width, y=y + y_position))
 
         return dimensions
-
-    def collides_top(self, dimensions_of_objects):
-        dimensions = set([])
-
-        x = self.get_position()[0]
-
-        y = self.get_position()[1]
-
-        width = self.get_size().get_width()
-
-        height = self.get_size().get_height()
-
-        for x_position in range(width):
-            dimensions.add('{x},{y}'.format(x=1 + x + x_position, y=y))
-
-        return len(dimensions.intersection(dimensions_of_objects))
+    
+    
+    def collides_top(self, game_object):
+        max_x = game_object.get_position()[0] + game_object.get_size().get_width()
+        min_x = game_object.get_position()[0]
+        
+        
+        if(min_x <= (self.get_position()[0] + self.get_size().get_width()/2) <= max_x):
+            if(game_object.get_position()[1] <= self.get_position()[1]  <= game_object.get_position()[1] + game_object.get_size().get_height()):
+                return True
+            return False
+        return False
 
 
-    def collides_right(self, dimensions_of_objects):
-        dimensions = set([])
-
-        x = self.get_position()[0]
-
-        y = self.get_position()[1]
-
-        width = self.get_size().get_width()
-
-        height = self.get_size().get_height()
-
-        for y_position in range(height):
-            if y + y_position != y != y + height:
-                dimensions.add('{x},{y}'.format(x=x + 1 + width, y=y + y_position))
-
-        return len(dimensions.intersection(dimensions_of_objects))
+    def collides_right(self, game_object):
+        max_y = game_object.get_position()[1] + game_object.get_size().get_height()
+        min_y = game_object.get_position()[1]
+        
+        if(min_y <= (self.get_position()[1] + self.get_size().get_height()/2) <= max_y):
+            if(game_object.get_position()[0] <= self.get_position()[0] <= game_object.get_position()[0]+game_object.get_size().get_width()):
+                return True
+            return False
+        return False
 
 
-
-    def collides_left(self, dimensions_of_objects):
-        dimensions = set([])
-
-        x = self.get_position()[0]
-
-        y = self.get_position()[1]
-
-        height = self.get_size().get_height()
-
-        for y_position in range(height):
-            if y + y_position != (y+1) != y + height:
-                dimensions.add('{x},{y}'.format(x=x+1, y=y + y_position))
-
-        return len(dimensions.intersection(dimensions_of_objects))
+    def collides_left(self, game_object):
+        max_x = game_object.get_position()[1] + game_object.get_size().get_height()
+        min_x = game_object.get_position()[1]
+        
+        if(min_x <= (self.get_position()[1] + self.get_size().get_height()/2) <= max_x):
+            if(game_object.get_position()[0] <= self.get_position()[0] <= game_object.get_position()[0]+game_object.get_size().get_width()):
+                return True
+            return False
+        return False
 
 

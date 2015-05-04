@@ -1,9 +1,11 @@
 __author__ = 'marvin'
 import os
 import fileinput
-from Game.Bricks import *
+from Bricks.Brick import Brick
+from Bricks.LifeBrick import LifeBrick
+from Bricks.SpeedBrick import SpeedBrick
 import pygame
-from Game.Shared.GameConstants import GameConstants
+from Shared.GameConstants import GameConstants
 
 
 class Level:
@@ -22,8 +24,9 @@ class Level:
     def get_current_level(self):
         return self.__amountOfBricksLeft
 
-    def brick_hit(self):
+    def brick_hit(self, brick):
         self.__amountOfBricksLeft -= 1
+        self.__bricks.remove(brick)
 
     def load_next_level(self):
         pass
@@ -54,8 +57,8 @@ class Level:
                     self.__bricks.append(brick)
                     self.__amountOfBricksLeft += 1
 
-                x += GameConstants.BRICK_SIZE.get_width() + 2
+                x += GameConstants.BRICK_SIZE.get_width() + 1
 
             x = 0
-            y += GameConstants.BRICK_SIZE.get_height() + 5
+            y += GameConstants.BRICK_SIZE.get_height() + 1
 

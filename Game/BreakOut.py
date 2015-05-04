@@ -1,8 +1,13 @@
 import pygame
-from Game import *
-from Game.Scenes import *
-from Game.Shared import GameConstants
+from Scenes.GameOverScene import GameOverScene
+from Scenes.PlayingGameScene import PlayingGameScene
+from Scenes.HighScoreScene import HighScoreScene
+from Scenes.MenuScene import MenuScene
+from Level import Level
+from Shared.GameConstants import GameConstants
 
+from Pad import Pad
+from Ball import Ball
 
 class BreakOut:
     def __init__(self):
@@ -28,7 +33,6 @@ class BreakOut:
         self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE.get_size(), pygame.DOUBLEBUF, 32)
 
         pygame.mouse.set_visible(0)
-
         self.__scenes = {
             0: PlayingGameScene(self),
             1: GameOverScene(self),
@@ -70,13 +74,13 @@ class BreakOut:
 
     def get_balls(self):
         return self.__balls
+    
 
     def get_pad(self):
         return self.__pad
 
     def play_sound(self, sound_clip):
         sound = self.__sounds[sound_clip]
-
         sound.stop()
         sound.play()
 
