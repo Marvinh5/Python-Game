@@ -13,6 +13,7 @@ class GameConstants:
     SPRITE_BRICK = os.path.join("Assets", "brick.png")
     LIFE_BRICK = os.path.join("Assets", "LifeBrick.png")
     SPEED_BRICK = os.path.join("Assets", "SuperBrickNormal.png")
+    SPRITE_PAD = os.path.join("Assets", "pad.png")
 
     def __init__(self):
         pass

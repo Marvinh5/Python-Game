@@ -15,12 +15,16 @@ class BreakOut:
         self.__score = 0
         self.__level = Level(self)
         self.__level.load(0)
-        self.__pad = Pad({0, 0}, 0)
+        self.__pad = Pad((GameConstants.SCREEN_SIZE.get_size()[0]/2,
+                    GameConstants.SCREEN_SIZE.get_size()[1] - GameConstants.PAD_SIZE.get_size()[1]),
+                    pygame.image.load(GameConstants.SPRITE_PAD))
+        
         self.__balls = [
-            Ball({0, 0},
+            Ball((GameConstants.SCREEN_SIZE.get_size()[0]/2,
+                  GameConstants.SCREEN_SIZE.get_size()[1]-GameConstants.PAD_SIZE.get_size()[1]),
                  pygame.image.load(GameConstants.SPRITE_BALL), self)]
-
-        self.__balls[0].set_motion(True)
+        
+        self.__balls[0].set_motion(False)
 
         pygame.init()
 
@@ -62,7 +66,10 @@ class BreakOut:
 
     def get_level(self):
         return self.__level
-
+    
+    def get_mouse_position(self):
+        return pygame.mouse.get_pos()
+    
     def get_score(self):
         return self.__score
 

@@ -1,4 +1,5 @@
 from Scene import Scene
+from Shared.GameConstants import GameConstants
 
 __author__ = 'marvin'
 
@@ -15,9 +16,13 @@ class PlayingGameScene(Scene):
         for event in events:
             if event.type == pygame.QUIT:
                 exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                self.get_game().get_balls()[0].set_motion(True)
 
     def manage_ball_collision(self, game):
+        
         elements_intersected = []
+        
         for ball in game.get_balls():
             for current_brick in game.get_level().get_bricks():
                 if current_brick.intersects(ball):
@@ -38,7 +43,14 @@ class PlayingGameScene(Scene):
         game = self.get_game()
 
         self.manage_ball_collision(game)
-
+        
+        for ball in game.get_balls():
+            if (ball.hit_pad(game.get_pad())):
+                ball.change_direction([game.get_pad()])
+        
         for brick in game.get_level().get_bricks():
             if not brick.is_destroyed():
                 game.screen.blit(brick.get_sprite(), brick.get_position())
+                
+        game.screen.blit(game.get_pad().get_sprite(), (game.get_mouse_position()[0], GameConstants.SCREEN_SIZE.get_size()[1]-game.get_pad().get_size().get_height()))
+        
