@@ -126,7 +126,7 @@ class GameObject(object):
         min_y = game_object.get_position()[1]
         
         if(min_x <= self.get_position()[0] <= max_x):
-            if min_y <= self.get_position()[1] + self.get_size().get_height() <= max_y:
+            if min_y <= self.get_position()[1]  <= max_y:
                 return True
         return False
 

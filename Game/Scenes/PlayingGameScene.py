@@ -16,8 +16,13 @@ class PlayingGameScene(Scene):
         for event in events:
             if event.type == pygame.QUIT:
                 exit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                self.get_game().get_balls()[0].set_motion(True)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    self.get_game().get_pad().move_left(10)
+                if event.key == pygame.K_RIGHT:
+                    self.get_game().get_pad().move_right(10)
+                if event.key == pygame.K_SPACE:
+                    self.get_game().get_balls()[0].set_motion(True)
 
     def manage_ball_collision(self, game):
         
@@ -52,5 +57,5 @@ class PlayingGameScene(Scene):
             if not brick.is_destroyed():
                 game.screen.blit(brick.get_sprite(), brick.get_position())
                 
-        game.screen.blit(game.get_pad().get_sprite(), (game.get_mouse_position()[0], GameConstants.SCREEN_SIZE.get_size()[1]-game.get_pad().get_size().get_height()))
+        game.screen.blit(game.get_pad().get_sprite(), game.get_pad().get_position())
         

@@ -27,6 +27,8 @@ class BreakOut:
         self.__balls[0].set_motion(False)
 
         pygame.init()
+        
+        pygame.key.set_repeat(1, 20)
 
         pygame.mixer.init()
 

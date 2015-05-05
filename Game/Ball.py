@@ -35,8 +35,9 @@ class Ball(GameObject):
         self.reset_speed()
     
     def hit_pad(self, pad):
-        if self.collides_bottom(pad):
-            self.__direction[1] *= 1
+        if self.collides_bottom(pad) or pad.collides_bottom(self):
+            return True
+        return False
     
     def change_direction(self, objects):
         for x in objects:
