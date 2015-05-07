@@ -44,11 +44,16 @@ class BreakOut:
             1: GameOverScene(self),
             2: HighScoreScene(self),
             3: MenuScene(self)
+            
         }
         self.__currentScene = 0
 
         self.__sounds = {}
-
+    
+    def play_sound(self, soundFile):
+        sound = pygame.mixer.music.load(soundFile)
+        pygame.mixer.music.play(1)
+    
     def start(self):
         while 1:
             self.__clock.tick(100)
@@ -87,11 +92,6 @@ class BreakOut:
 
     def get_pad(self):
         return self.__pad
-
-    def play_sound(self, sound_clip):
-        sound = self.__sounds[sound_clip]
-        sound.stop()
-        sound.play()
 
     def reduce_lives(self):
         self.__lives -= 1

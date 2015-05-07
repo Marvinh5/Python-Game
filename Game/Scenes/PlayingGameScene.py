@@ -31,17 +31,19 @@ class PlayingGameScene(Scene):
         for ball in game.get_balls():
             for current_brick in game.get_level().get_bricks():
                 if current_brick.intersects(ball):
+                    self.brick_hit_sound()
                     elements_intersected.append(current_brick)
             if len(elements_intersected) > 0:
                 ball.change_direction(elements_intersected)
                 for brick in elements_intersected:
                     game.get_level().brick_hit(brick)
+                
                 elements_intersected = []
-            
+                
             ball.update_position()
             
             game.screen.blit(ball.get_sprite(), ball.get_position())
-
+    
     def render(self):
         super(PlayingGameScene, self).render()
 
@@ -58,4 +60,9 @@ class PlayingGameScene(Scene):
                 game.screen.blit(brick.get_sprite(), brick.get_position())
                 
         game.screen.blit(game.get_pad().get_sprite(), game.get_pad().get_position())
-        
+    
+    def brick_hit_sound(self):
+        sound = self.get_game().play_sound(GameConstants.SOUND_BRICK_HIT)
+    
+    def dead_ball_sound(self):
+        sound = self.get_game().play_sound(GameConstants.SOUND_GAME_OVER)

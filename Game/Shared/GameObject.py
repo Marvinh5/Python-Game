@@ -40,8 +40,8 @@ class GameObject(object):
     def collides_edges(self, game_object):
         borders = self.get_borders()
         borders2 = game_object.get_borders()
-        if borders2[4][0] >= borders[1][0] and borders[1][0] >= borders[1][0]:
-            if abs(borders[1][0] - borders2[1][0]) > abs(borders[1][1] - borders[1][1]):
+        if borders2[4][0] >= borders[1][0] and borders[1][0] >= borders[4][0]:
+            if abs(borders[1][0] - borders2[1][0]) >= abs(borders[1][1] - borders[1][1]):
                 return True,'Top'
             else:
                 return True, 'Sides'
@@ -122,12 +122,24 @@ class GameObject(object):
         max_x = game_object.get_position()[0] + game_object.get_size().get_width()
         min_x = game_object.get_position()[0]
         
+        max_x2 = self.get_position()[0] + self.get_size().get_width()
+        min_x2 = self.get_position()[0]
+        
+        
         max_y = game_object.get_position()[1] + game_object.get_size().get_height()
         min_y = game_object.get_position()[1]
         
+        max_y2 = self.get_position()[1] + self.get_size().get_height()
+        min_y2 = self.get_position()[1]
+        
         if(min_x <= self.get_position()[0] <= max_x):
-            if min_y <= self.get_position()[1]  <= max_y:
+            if min_y <= self.get_position()[1] + self.get_size().get_height() <= max_y:
                 return True
+            
+        if(min_x2 <= game_object.get_position()[0] <= max_x2):
+            if min_y2 <= game_object.get_position()[1] + game_object.get_size().get_height() <= max_y2:
+                return True
+            
         return False
 
 

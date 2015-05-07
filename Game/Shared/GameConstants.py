@@ -14,6 +14,9 @@ class GameConstants:
     LIFE_BRICK = os.path.join("Assets", "LifeBrick.png")
     SPEED_BRICK = os.path.join("Assets", "SuperBrickNormal.png")
     SPRITE_PAD = os.path.join("Assets", "pad.png")
+    SOUND_BRICK_HIT = os.path.join("Assets", "metal_hit.mp3")
+    SOUND_GAME_OVER = os.path.join("Assets", "game_over.wav")
+    
 
     def __init__(self):
         pass

@@ -73,4 +73,4 @@ class Ball(GameObject):
             self.set_position((x, y))
 
     def is_ball_dead(self):
-        return self.is_ball_dead
+        return self.__is_ball_dead
